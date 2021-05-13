@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
   def edit
     respond_to do |format|
       format.html
+      format.js
     end
   end
 
@@ -33,6 +34,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_back fallback_location: root_path, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -49,6 +51,7 @@ class CommentsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
